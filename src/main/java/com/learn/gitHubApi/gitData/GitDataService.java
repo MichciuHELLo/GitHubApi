@@ -1,5 +1,6 @@
 package com.learn.gitHubApi.gitData;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -27,9 +28,10 @@ public class GitDataService implements GitDataRepository{
 
             return objectMapper.readValue(response.body(), new TypeReference<>() {});
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+        } catch (NoSuchMethodError e) {
+            throw new ResponseNotFoundException("User '" + username + "' not found!");
+        } catch (JsonProcessingException e) {
+            throw new JsonParseException("Error while json parsing.");
         }
     }
 
@@ -49,9 +51,10 @@ public class GitDataService implements GitDataRepository{
             }
             return gitUserReposWithBranches;
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+        } catch (NoSuchMethodError e) {
+            throw new ResponseNotFoundException("Owner '" + owner + "' not found!");
+        } catch (JsonProcessingException e) {
+            throw new JsonParseException("Error while json parsing.");
         }
     }
 
@@ -65,12 +68,8 @@ public class GitDataService implements GitDataRepository{
                     .build();
 
             return httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-        } catch (IOException e) {
-            return null;
-        } catch (InterruptedException e) {
-            return null;
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
+        } catch (IOException | InterruptedException | URISyntaxException e) {
+            throw new RequestSenderException("Error occurred while sending a request: " + e.getMessage());
         }
     }
 
