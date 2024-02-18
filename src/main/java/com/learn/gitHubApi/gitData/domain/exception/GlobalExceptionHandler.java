@@ -1,5 +1,8 @@
-package com.learn.gitHubApi.gitData;
+package com.learn.gitHubApi.gitData.domain.exception;
 
+import com.learn.gitHubApi.gitData.domain.exception.exceptions.JsonParseException;
+import com.learn.gitHubApi.gitData.domain.exception.exceptions.RequestSenderException;
+import com.learn.gitHubApi.gitData.domain.exception.exceptions.ResponseNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
