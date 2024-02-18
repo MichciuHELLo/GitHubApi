@@ -1,4 +1,4 @@
-package com.learn.gitHubApi.gitData;
+package com.learn.gitHubApi.gitData.domain.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

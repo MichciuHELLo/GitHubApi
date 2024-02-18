@@ -1,4 +1,4 @@
-package com.learn.gitHubApi.gitData;
+package com.learn.gitHubApi.gitData.domain.exception.exceptions;
 
 public class JsonParseException extends RuntimeException{
     public JsonParseException(String message) {

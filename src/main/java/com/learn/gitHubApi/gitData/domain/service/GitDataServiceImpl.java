@@ -1,9 +1,16 @@
-package com.learn.gitHubApi.gitData;
+package com.learn.gitHubApi.gitData.domain.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.learn.gitHubApi.gitData.domain.dto.BranchDto;
+import com.learn.gitHubApi.gitData.domain.dto.GitDataResponseDto;
+import com.learn.gitHubApi.gitData.domain.dto.RepositoryDto;
+import com.learn.gitHubApi.gitData.domain.exception.exceptions.JsonParseException;
+import com.learn.gitHubApi.gitData.domain.exception.exceptions.RequestSenderException;
+import com.learn.gitHubApi.gitData.domain.exception.exceptions.ResponseNotFoundException;
+import com.learn.gitHubApi.gitData.domain.repository.GitDataService;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -16,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class GitDataService implements GitDataRepository{
+public class GitDataServiceImpl implements GitDataService {
 
     @Override
     public List<RepositoryDto> getRepositories(String username) {
