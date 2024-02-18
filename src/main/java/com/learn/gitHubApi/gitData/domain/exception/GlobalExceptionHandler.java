@@ -1,6 +1,5 @@
 package com.learn.gitHubApi.gitData.domain.exception;
 
-import com.learn.gitHubApi.gitData.domain.exception.exceptions.JsonParseException;
 import com.learn.gitHubApi.gitData.domain.exception.exceptions.RequestSenderException;
 import com.learn.gitHubApi.gitData.domain.exception.exceptions.ResponseNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -17,11 +16,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ResponseNotFoundException.class)
     public ResponseEntity<?> handleUserNotFoundException(ResponseNotFoundException e) {
         return new ResponseEntity<>(messageBuilder(e.getMessage(), HttpStatus.NOT_FOUND), HttpStatus.NOT_FOUND);
-    }
-
-    @ExceptionHandler(JsonParseException.class)
-    public ResponseEntity<?> handleJsonParseException(JsonParseException e) {
-        return new ResponseEntity<>(messageBuilder(e.getMessage(), HttpStatus.BAD_REQUEST), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(RequestSenderException.class)
