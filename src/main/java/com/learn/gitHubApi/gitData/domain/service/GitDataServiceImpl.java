@@ -51,9 +51,9 @@ public class GitDataServiceImpl implements GitDataService {
             List<GitDataResponseDto> gitUserReposWithBranches = new ArrayList<>();
 
             for (int i = 0; i < gitUserRepositories.size(); i++) {
-                var response = getHttpResponse("https://api.github.com/repos/"+ owner + "/" + gitUserRepositories.get(i).getName() + "/branches");
+                var response = getHttpResponse("https://api.github.com/repos/"+ owner + "/" + gitUserRepositories.get(i).name() + "/branches");
                 List<BranchDto> branchDtoList = objectMapper.readValue(response.body(), new TypeReference<>() {});
-                var gitDataResponseDto = new GitDataResponseDto(gitUserRepositories.get(i).getName(), owner, branchDtoList);
+                var gitDataResponseDto = new GitDataResponseDto(gitUserRepositories.get(i).name(), owner, branchDtoList);
                 gitUserReposWithBranches.add(gitDataResponseDto);
             }
             return gitUserReposWithBranches;
